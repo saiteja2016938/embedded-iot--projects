@@ -17,3 +17,8 @@ Power Supply: A DC power supply (5V) to power the circuit.
 
 Circuit Operation:
 The circuit employs two 555 timer ICs, each configured as an astable multivibrator. The output of one timer can be used to trigger or control the other, creating an alternating blinking effect. The timing of the flashes is determined by the values of the resistors and electrolytic capacitors connected to each 555 timer. By carefully selecting these values, the flash rate and duration can be adjusted to achieve the desired ambulance light effect.
+
+![Alt text](./ambulance_light.png)
+![Alt text](./ambulance_light_video.png)
+
+
