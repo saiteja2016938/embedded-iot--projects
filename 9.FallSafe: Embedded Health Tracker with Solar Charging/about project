@@ -1,0 +1,53 @@
+ Wearable Health Monitoring & Fall Detection System
+
+Overview  
+This wearable device monitors human pulse rate and detects falls using onboard sensors. It’s powered by a rechargeable Li-ion battery that charges continuously using body heat and sunlight, thanks to a thermoelectric converter and solar panel. The system is built around MAX30100 for pulse sensing and MPU6050 for motion detection, making it ideal for health tracking and safety applications.
+
+
+
+ Components Used
+
+- MAX30100 pulse rate sensor  
+- MPU6050 accelerometer + gyroscope (for fall detection)  
+- Arduino Nano (or similar microcontroller)  
+- Buck converter (for voltage regulation)  
+- Li-ion battery (e.g., 3.7 V 2600 mAh)  
+- Battery protection circuit  
+- Thermoelectric generator (temperature-to-electricity converter)  
+- Small solar panel  
+- Jumper wires and breadboard  
+
+
+
+ Working Principle
+
+1. Pulse Monitoring  
+   - MAX30100 reads heart rate and SpO₂ levels.  
+   - Data is processed and optionally displayed or transmitted.  
+
+2. Fall Detection  
+   - MPU6050 tracks sudden changes in acceleration and orientation.  
+   - If a sharp drop or tilt is detected beyond a threshold, it flags a fall event.  
+
+3. Power Management
+   - Buck converter steps down voltage from solar panel or thermoelectric source.  
+   - Battery protection circuit prevents overcharging and deep discharge.  
+   - Device charges passively from body heat and ambient light while worn.  
+
+
+ Code Summary
+
+- Initialize I2C for both MAX30100 and MPU6050  
+- Read pulse and SpO₂ data every second  
+- Continuously monitor acceleration and angular velocity  
+- If fall condition is met ( sudden drop + tilt), trigger alert  
+- Optional: send data via serial or Bluetooth for logging  
+
+cpp
+// Pseudocode
+if (mpu.detectFall()) {
+  triggerAlert();
+}
+
+pulse = max30100.readPulse();
+spo2  = max30100.readSpO2();
