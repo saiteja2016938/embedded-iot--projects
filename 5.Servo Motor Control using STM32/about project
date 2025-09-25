@@ -1,0 +1,47 @@
+ Servo Motor Control using STM32
+
+ Overview
+
+This project shows how to control a hobby servo motor with an STM32 Nucleo board. By outputting a simple PWM signal from one of the MCU’s timers, we can set the servo shaft to any angle between 0° and 180°.
+
+
+Hardware Used
+
+- STM32 Nucleo board (e.g., G070RB or F103 “Blue Pill”)  
+- SG90 5 V hobby servo  
+- 5 V power supply (separate or via regulator)  
+- Jumper wires and small breadboard  
+- Common ground connection  
+
+
+
+ Working Principle
+
+- The STM32 timer is set up to generate a 50 Hz PWM signal (20 ms period).  
+- A pulse width of 1 ms moves the servo to 0°, while 2 ms moves it to 180°.  
+- Any pulse between 1 ms and 2 ms sets intermediate angles.  
+- In the main program loop, we change the pulse width to sweep the servo back and forth.  
+
+
+ How to Use
+
+1. Wire the servo control pin to the STM32 PWM output (e.g., PA6).  
+2. Connect servo VCC to 5 V and servo GND to MCU GND.  
+3. Upload your firmware that:
+   - Initializes the timer for PWM
+   - Maps desired angles to pulse widths
+   - Updates the compare register in a loop  
+4. Power on the board and watch the servo sweep smoothly.
+
+ Project Images
+ 
+- Breadboard photo showing Nucleo board and servo wiring  
+- Close-up of servo horn at mid-position (90°)  
+
+
+ Applications & Next Steps
+
+- Basic robotics arm joint control  
+- Pan/tilt camera mounts  
+- Automated door locks or grippers  
+- Extend by adding feedback with a potentiometer for closed-loop control  
