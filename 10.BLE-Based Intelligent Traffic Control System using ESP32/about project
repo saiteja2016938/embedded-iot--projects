@@ -1,0 +1,78 @@
+BLE-Based Intelligent Traffic Control System using ESP32
+
+ Overview  
+This project uses Bluetooth Low Energy (BLE) to detect vehicles and manage traffic signals intelligently. Each vehicle is equipped with a BLE transmitter ( ESP32 or BLE beacon), while a central ESP32 at the traffic junction acts as a BLE scanner.
+When vehicles approach the intersection, the control center detects them and adjusts traffic lights based on real-time presence—reducing idle wait time and improving flow.
+
+
+
+Components Used
+
+- ESP32 Dev Board (Control Center – BLE Scanner)  
+- ESP32 or BLE Beacon (Vehicle-side Transmitter)  
+- Traffic signal LEDs (Red, Yellow, Green)  
+- Buzzer (optional for alerts)  
+- Power supply (Li-ion battery or USB)  
+- Jumper wires and breadboard  
+
+ Working Principle
+
+1. Vehicle BLE Transmitter 
+   - Each vehicle has an ESP32 broadcasting a unique BLE advertisement packet (eg, vehicle ID).  
+   - Broadcast interval is short (eg, every 500 ms) to ensure quick detection.
+
+2.ESP32 Control Center (Scanner) 
+   - Continuously scans for nearby BLE devices.  
+   - Filters based on known vehicle IDs or signal strength (RSSI).  
+   - If a vehicle is detected in a specific lane, the system prioritizes that lane’s green signal.
+
+3. Signal Control Logic
+   - Based on detected vehicles, the ESP32 switches traffic lights using GPIO pins.  
+   - If no vehicle is detected, default timing is applied.  
+   - Optional: log vehicle IDs and timestamps for traffic analytics.
+
+ Code Summary (ESP32 BLE Scanner – Arduino Framework)
+
+cpp
+#include <BLEDevice.h>
+#include <BLEScan.h>
+
+BLEScan* pBLEScan;
+int scanTime = 5; // seconds
+
+void setup() {
+  Serial.begin(115200);
+  BLEDevice::init("");
+  pBLEScan = BLEDevice::getScan();
+  pBLEScan->setActiveScan(true);
+}
+
+void loop() {
+  BLEScanResults foundDevices = pBLEScan->start(scanTime, false);
+  for (int i = 0; i < foundDevices.getCount(); i++) {
+    BLEAdvertisedDevice device = foundDevices.getDevice(i);
+    String addr = device.getAddress().toString().c_str();
+    int rssi = device.getRSSI();
+
+    if (addr == "AA:BB:CC:DD:EE:FF" && rssi > -80) {
+      Serial.println("Vehicle detected in Lane 1");
+      // Trigger green signal for Lane 1
+    }
+  }
+  pBLEScan->clearResults();
+}
+
+ Project Images
+
+- ESP32 scanner setup at junction  
+- Vehicle-side ESP32 broadcasting BLE packets  
+- Traffic signal LEDs responding to BLE detection  
+
+ Applications
+
+- Smart city traffic control  
+- Emergency vehicle prioritization  
+- Real-time traffic analytics  
+- Vehicle counting and lane usage statistics  
+
+
