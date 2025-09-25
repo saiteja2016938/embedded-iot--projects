@@ -1,0 +1,106 @@
+Bluetooth-Controlled Robot
+
+1. What This Project Does  
+I built a four-wheeled robot you can drive with your phone. When you send commands over Bluetooth, the Arduino UNO interprets them and tells the L293D motor driver which motors to spin.
+The robot moves forward, backward, turns left, right, or stops on command.
+
+
+
+ 2. Parts List  
+- Arduino UNO  
+- L293D motor driver IC  
+- Bluetooth module (HC-05 or HC-06)  
+- Two DC gear motors with wheels  
+- Robot chassis (with caster wheel)  
+- Li-ion battery pack (7.4 V)  
+- Jumper wires and connectors  
+
+
+
+ 3. Wiring Overview  
+1. Power  
+   • Battery + → VIN on Arduino and VCC on L293D  
+   • Battery – → GND on Arduino and GND on L293D  
+2. Motors  
+   • L293D outputs to the two motor leads  
+3. Control Lines (Arduino → L293D)  
+   • D5 → ENA (enable left motor)  
+   • D6/D7 → IN1/IN2 (left motor direction)  
+   • D9 → ENB (enable right motor)  
+   • D10/D11 → IN3/IN4 (right motor direction)  
+4. Bluetooth  
+   • Arduino RX (D0) ← TX of HC-05  
+   • Arduino TX (D1) → RX of HC-05  
+   • HC-05 VCC → 5 V, GND → GND  
+
+
+
+ 4. Key Code Logic  
+cpp
+char cmd;
+void setup() {
+  Serial.begin(9600);
+  pinMode(5, OUTPUT);  // left motor speed
+  pinMode(6, OUTPUT);  
+  pinMode(7, OUTPUT);  
+  pinMode(9, OUTPUT);  // right motor speed
+  pinMode(10, OUTPUT); 
+  pinMode(11, OUTPUT);
+}
+
+void loop() {
+  if (Serial.available()) {
+    cmd = Serial.read();
+    switch (cmd) {
+      case 'F': forward(); break;
+      case 'B': backward(); break;
+      case 'L': turnLeft(); break;
+      case 'R': turnRight(); break;
+      case 'S': stopMotors(); break;
+    }
+  }
+}
+
+void forward() {
+  digitalWrite(6, HIGH); digitalWrite(7, LOW);
+  digitalWrite(10, HIGH); digitalWrite(11, LOW);
+  analogWrite(5, 200); analogWrite(9, 200);
+}
+
+void backward() {
+  digitalWrite(6, LOW); digitalWrite(7, HIGH);
+  digitalWrite(10, LOW); digitalWrite(11, HIGH);
+  analogWrite(5, 200); analogWrite(9, 200);
+}
+
+void turnLeft() {
+  analogWrite(5, 0);   analogWrite(9, 200);
+}
+
+void turnRight() {
+  analogWrite(5, 200); analogWrite(9, 0);
+}
+
+void stopMotors() {
+  analogWrite(5, 0);   analogWrite(9, 0);
+}
+
+
+5. How to Run It  
+1. Upload the sketch to Arduino.  
+2. Pair your phone with the HC-05 module at 9600 bps (default PIN 1234).  
+3. Open any Bluetooth terminal app.  
+
+4. Send single letters:  
+   • ‘F’ → Forward  
+   • ‘B’ → Backward  
+   • ‘L’ → Left  
+   • ‘R’ → Right  
+   • ‘S’ → Stop  
+
+
+ 6. Next Steps  
+- Add speed control by mapping different letters to different PWM values.  
+- Integrate obstacle detection with an ultrasonic sensor.  
+- Improve stability with a proper chassis base.  
+
