@@ -1,0 +1,64 @@
+
+Greenhouse Environment Monitoring & Control System 🌱
+
+Overview
+This project is designed to monitor and control key environmental parameters inside a greenhouse using sensors and automation. It helps maintain optimal conditions for plant growth by tracking temperature, humidity, soil moisture, and light levels—and automatically controlling fans, lights, and irrigation.
+The system was not only built and tested but also "presented at a college expo" and "validated through real-world feedback from greenhouse farmers".
+
+
+
+ Components Used
+
+- Arduino UNO  
+- DHT11 (Temperature & Humidity Sensor)  
+- Soil Moisture Sensor  
+- LDR Module (Light Detection)  
+- Relay Module (for fan and light control)  
+- LCD Display (16×2)  
+- Mini Fan & Light  
+- Li-ion Battery with protection circuit  
+
+
+ College Expo Presentation (Image 2)
+
+At the college project expo, the system was showcased to faculty, peers, and visitors. The setup included:
+
+- A working demo of the sensors reacting to environmental changes  
+- Real-time data displayed on the LCD  
+- Automatic fan activation when temperature crossed a threshold  
+- Soil moisture triggering irrigation logic  
+- Light control based on ambient brightness  
+
+Feedback Highlights:
+- Appreciated for its simplicity and practical use in agriculture  
+- Suggestions to add mobile app control and data logging  
+- Recognized as a scalable solution for small-scale farmers  
+
+
+ Real Farm Visit & Feedback (Image 3)
+
+After the expo, the project was taken to actual greenhouse farms. You interacted with farmers and explained how the system works. The visit helped uncover real challenges like:
+
+- Uneven soil moisture across different beds  
+- Manual irrigation delays during peak heat  
+- Lack of awareness about affordable automation options  
+
+Farmer Feedback:
+- Liked the idea of automatic fan and irrigation control  
+- Requested solar-powered options for remote farms  
+- Suggested adding SMS alerts for critical conditions  
+
+This visit validated the project’s relevance and inspired future upgrades like solar integration, mobile alerts, and multi-zone control.
+
+
+
+ Applications
+
+- Greenhouse automation for small and medium farms  
+- Smart irrigation and climate control  
+- Educational tool for agri-tech learning  
+- Scalable for polyhouses and vertical farming setups  
+
+
+
+
