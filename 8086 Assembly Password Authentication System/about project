@@ -1,0 +1,81 @@
+ 8086 Assembly Password Authentication System
+
+ Overview
+
+This DOS-based program, written in 8086 assembly, prompts the user to enter a four-digit password, compares the entry against a hard-coded value, and prints “Access Granted” or “Access Denied” before exiting.
+
+
+
+ Tools Used
+
+- MASM  
+- TLINK linker  
+- DOSBox 
+- Plain-text editor 
+
+
+ Working Principle
+
+1. Initialize the data segment so DS points to your `.DATA` block.  
+2. Display the prompt string using DOS interrupt 21h, AH=09h.  
+3. Read exactly four characters from the keyboard with buffered input (INT 21h, AH=0Ah).  
+4. Compare each input byte to the corresponding byte in the hard-coded password using a loop of `CMP` and conditional jumps.  
+5. On full match, display the success message; on any mismatch, show the failure message.  
+6. Print a newline and exit back to DOS via INT 21h, AH=4Ch.  
+
+
+Code Summary
+
+asm
+; Setup DS
+MOV   AX,@DATA
+MOV   DS,AX
+
+; Prompt user
+LEA   DX,PROMPT
+MOV   AH,09h
+INT   21h
+
+; Read 4 bytes into INPUT_BUFFER+1
+LEA   DX,INPUT_BUFFER
+MOV   AH,0Ah
+INT   21h
+
+; Compare loop
+LEA   SI,PASSWORD
+LEA   DI,INPUT_BUFFER+1
+MOV   CX,4
+COMPARE_LOOP:
+  LODSB
+  CMPSB
+  JNE   AUTH_FAIL
+  LOOP  COMPARE_LOOP
+
+; On match
+LEA   DX,MSG_SUCCESS
+MOV   AH,09h
+INT   21h
+JMP   DONE
+
+AUTH_FAIL:
+  LEA   DX,MSG_FAILURE
+  MOV   AH,09h
+  INT   21h
+
+DONE:
+  ; Newline and exit
+  LEA   DX,NEWLINE
+  MOV   AH,09h
+  INT   21h
+  MOV   AH,4Ch
+  INT   21h
+
+
+ Applications & Next Steps
+
+- Demonstrates basic segment setup and DOS interrupts in 8086 assembly  
+- Foundation for secure console utilities in legacy systems  
+- Next steps: mask input with ‘*’, add retry limits, or load the password from disk  
+
+
+Feel free to fork this repository, experiment with the code, and extend the authentication logic!
