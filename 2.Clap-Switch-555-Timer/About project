@@ -1,0 +1,36 @@
+Overview :
+This project demonstrates a sound-activated clap switch using a 555 Timer IC in monostable mode.
+When a clap is detected, the circuit activates an LED and buzzer for a short duration and then automatically switches them OFF.
+
+
+🛠️Hardware Used :
+
+555 Timer IC
+Electret Microphone
+NPN Transistor (BC547)
+Resistors and Capacitors (timing & biasing)
+LED 
+Buzzer 
+9V Battery
+Breadboard and jumper wires
+
+
+⚙️ Working Principle
+The microphone captures clap sound and converts it into a small electrical signal.
+The transistor amplifier boosts the signal.
+This amplified signal triggers the 555 Timer (configured in monostable mode).
+The output pin (Pin 3) of the 555 goes HIGH for a fixed time, powering the LED and buzzer.
+After the set time interval, the output returns LOW, switching OFF both components.
+
+📷 Project Images
+
+Breadboard setup of the clap switch
+Circuit connections with LED and buzzer
+Output when the circuit is triggered by a clap
+
+🎯 Applications
+
+Sound-activated alarms
+Low-cost home automation systems
+Classroom demonstration of 555 Timer applications
+Sound-controlled gadgets
