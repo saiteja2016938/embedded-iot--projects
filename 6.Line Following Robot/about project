@@ -1,0 +1,91 @@
+ Line Following Robot
+
+Overview  
+This project builds a basic robot that can follow a black line on a light surface. 
+Two IR sensors detect the line and an Arduino UNO controls the motors through an L293D driver to keep the robot on track.
+
+ Components Used
+
+- Arduino UNO  
+- L293D motor driver IC  
+- 2 IR reflectance sensors  
+- Robot chassis with 2 drive wheels and 1 caster wheel  
+- Li-ion battery pack (7.4 V)  
+- Jumper wires  
+
+
+ How It Works
+
+- IR sensors sit at the front, close to the ground, and output LOW over the black line, HIGH on white.  
+- Arduino reads both sensor values every loop.  
+- Motor actions based on readings:
+  - Both HIGH → move forward  
+  - Left LOW, right HIGH → turn left  
+  - Right LOW, left HIGH → turn right  
+  - Both LOW → stop  
+
+
+Wiring & Code
+
+1. Connect IR sensor outputs to Arduino pins D2 and D3.  
+2. Wire Arduino PWM pins D5/D6 and digital pins D4/D7 to the L293D inputs for the two motors.  
+3. Power the L293D and motors from the Li-ion battery; share ground with the Arduino.  
+4. Upload this sketch:
+
+cpp
+int leftSensor  = 2;
+int rightSensor = 3;
+int leftFwd     = 5;
+int leftRev     = 4;
+int rightFwd    = 6;
+int rightRev    = 7;
+
+void setup() {
+  pinMode(leftSensor, INPUT);
+  pinMode(rightSensor, INPUT);
+  pinMode(leftFwd, OUTPUT);
+  pinMode(leftRev, OUTPUT);
+  pinMode(rightFwd, OUTPUT);
+  pinMode(rightRev, OUTPUT);
+}
+
+void loop() {
+  bool L = digitalRead(leftSensor);
+  bool R = digitalRead(rightSensor);
+
+  if (L && R) {
+    // forward
+    digitalWrite(leftFwd, HIGH);  digitalWrite(leftRev, LOW);
+    digitalWrite(rightFwd, HIGH); digitalWrite(rightRev, LOW);
+  } 
+  else if (!L && R) {
+    // turn left
+    digitalWrite(leftFwd, LOW); digitalWrite(leftRev, LOW);
+    digitalWrite(rightFwd, HIGH); digitalWrite(rightRev, LOW);
+  } 
+  else if (L && !R) {
+    // turn right
+    digitalWrite(leftFwd, HIGH); digitalWrite(leftRev, LOW);
+    digitalWrite(rightFwd, LOW);  digitalWrite(rightRev, LOW);
+  } 
+  else {
+    // stop
+    digitalWrite(leftFwd, LOW); digitalWrite(leftRev, LOW);
+    digitalWrite(rightFwd, LOW); digitalWrite(rightRev, LOW);
+  }
+}
+
+
+ Applications & Next Steps
+
+- Starter project for robotics courses  
+- Line-guided delivery bots  
+- Experiment with PID control for smoother steering  
+- Add more sensors (ultrasonic, color) for advanced following  
+
+
+ Photos
+
+1. IR sensors mounted on chassis  
+2. Arduino UNO and L293D wiring  
+3. Robot in action on a taped track
