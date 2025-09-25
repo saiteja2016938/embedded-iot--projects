@@ -1,0 +1,78 @@
+Wireless Communication using LoRa,STM32 and ESP32.
+
+Overview
+
+This project implements a long-range, low-power wireless link between two embedded nodes using LoRa modules and STM32 microcontrollers.
+Sensor data (GPS coordinates, motion detection, gas levels) is captured at the transmitter node, sent over LoRa, and displayed in real time on a 16×2 LCD at the receiver node.
+
+ Hardware Used :
+- STM32 Nucleo G070RB development board  
+- ESP32 development board as receiver controller  
+- SX1278 LoRa Transmitter and Receiver modules (433 MHz)  
+- MQ-7 Carbon Monoxide gas sensor  
+- MPU6050 3-axis accelerometer & gyroscope  
+- GY-GPS6MV2 GPS module  
+- 16×2 character LCD with I2C interface  
+- 3.3 V / 5 V regulated power supply (Li-Po battery or bench supply)  
+- Breadboard, jumper wires, and mounting board  
+
+ Working Principle:
+
+1. The STM32 transmitter node reads:
+   - Analog voltage from the MQ-7 sensor for CO concentration  
+   - Motion data (X, Y, Z acceleration and angular velocity) via I2C from MPU6050  
+   - NMEA-formatted latitude and longitude strings from the GPS module over UART  
+
+2. Sensor values are formatted into a single payload string, for example:  
+   “MQ-7: 211, MPU6050: X=–0.05 Y=0.56 Z=9.63, GPS: 17.38487°N, 78.48667°E”  
+
+3. The payload is sent via SPI to the SX1278 LoRa transmitter, which modulates and broadcasts the data at 433 MHz.  
+
+4. The LoRa receiver captures incoming packets and forwards them over SPI to the ESP32.  
+
+5. The ESP32 parses the message, extracts CO level, motion status, and GPS coordinates, then updates the 16×2 LCD display.  
+
+6. If no packet arrives within a predefined timeout, the LCD shows “Waiting …” to indicate link inactivity.
+
+
+ Transmitter Code Summary:
+
+- Initialize ADC channel for MQ-7 and read analog voltage.  
+- Configure I2C interface to query MPU6050 registers for accelerometer and gyroscope data.  
+- Set up UART to receive NMEA strings from the GPS module.  
+- Format sensor readings into a comma-separated string.  
+- Initialize SPI and LoRa driver to send the payload via SX1278.  
+- Implement retry logic in case of transmission failures.  
+
+
+
+ Receiver Code Summary:
+
+- Initialize SPI and LoRa driver to listen for incoming SX1278 packets.  
+- On packet reception, read the buffer and verify checksum or packet length.  
+- Parse comma-separated values into CO, motion, and GPS fields.  
+- Update the I2C-driven 16×2 LCD with parsed data.  
+- Maintain a timer to detect link loss; display “Waiting …” when timeout elapses.  
+
+
+Applications:
+
+- Remote pollution and air-quality monitoring in industrial or urban areas  
+- Smart agriculture telemetry for gas leakage and machinery vibration detection  
+- Asset tracking and geofencing with GPS coordinates  
+- Disaster-management systems for early gas-leak alerts and motion detection  
+
+
+ Advantages:
+
+- Low power consumption with STM32 and LoRa’s sleep modes  
+- Kilometer-scale line-of-sight range without internet infrastructure  
+- Real-time environmental and location data on a simple LCD  
+- Scalable architecture for adding more sensors or multiple nodes  
+
+  Project Images:
+
+1. Transmitter node layout: STM32 Nucleo, MQ-7, MPU6050, GPS, and LoRa Tx on a breadboard  
+2. Receiver node assembly: ESP32, LoRa Rx, and I2C LCD mounted on a wooden board  
+3. Live LCD output showing gas concentration, motion status, and GPS coordinates  
+
