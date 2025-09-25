@@ -1,0 +1,62 @@
+Wireless Communication using STM32 Blue Pill and LoRa
+
+ Overview
+
+This project showcases bidirectional, long-range wireless communication between two STM32 “Blue Pill” development boards using SX1278 LoRa modules.
+One Blue Pill acts as a transmitter, sending text packets or sensor data, while the other serves as a receiver and can acknowledge messages or toggle an LED based on the content.
+
+
+ Hardware Used
+
+- STM32 “Blue Pill” development board × 2  
+- SX1278 LoRa Transmitter & Receiver modules × 2 (433 MHz)  
+- USB-to-Micro USB cables for programming and power  
+- Status LEDs and current-limiting resistors  
+- Push-button (on transmitter)  
+- Breadboards and jumper wires  
+- 3.3 V regulated power supply or Li-Po battery  
+
+
+ Working Principle
+
+1. Initialize SPI on each Blue Pill to interface with its SX1278 LoRa module.  
+2. The transmitter Blue Pill reads a push-button input or sensor value and formats a payload string (e.g., “PING” or sensor reading).  
+3. Using the LoRa library, the transmitter sends the payload over 433 MHz.  
+4. The receiver’s LoRa module captures incoming packets and delivers them via SPI to the second Blue Pill.  
+5. The receiver parses the payload: if it reads “PING,” it toggles an LED and sends back “PONG.” Otherwise, it displays or logs the received data over the serial port.  
+6. The transmitter listens for the acknowledgment packet and indicates success with its own LED blink.  
+
+
+ Transmitter Code Summary
+
+- Configure SPI pins (MOSI, MISO, SCK) and NSS for SX1278.  
+- Initialize the push-button GPIO and status LED GPIO.  
+- In `setup()`, begin LoRa module at 433 MHz and set transmission power.  
+- On button press, build a packet (`LoRa.beginPacket(); LoRa.print("PING"); LoRa.endPacket();`).  
+- After sending, switch LoRa to receive mode and wait for acknowledgment.  
+- Blink LED once on successful “PONG” receipt.  
+
+
+ Receiver Code Summary
+
+- Initialize SPI and LoRa at matching frequency and settings.  
+- Initialize status LED GPIO.  
+- In the main loop, call `LoRa.parsePacket()` to check for new data.  
+- On packet arrival, read the buffer into a string.  
+- If the string equals “PING,” toggle LED and reply with “PONG.”  
+- Otherwise, output the received string to the serial console and blink LED twice.  
+
+
+Applications
+
+- Remote control and telemetry for robotics or sensor networks  
+- Point-to-point text messaging over kilometers without internet  
+- Outdoor data logging in agriculture or wildlife tracking  
+- Rapid prototyping of long-range IoT links  
+
+
+Project Images:
+
+1. Transmitter node: Blue Pill on breadboard with SX1278 and push-button  
+2. Receiver node: second Blue Pill, LoRa module, and status LED assembly  
+3. Serial monitor output showing “PING → PONG” exchange and LED feedback  
