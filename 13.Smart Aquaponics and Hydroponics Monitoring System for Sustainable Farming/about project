@@ -1,0 +1,75 @@
+Smart Aquaponics and Hydroponics Monitoring System for Sustainable Farming
+
+Project Overview:
+The Smart Aquaponics and Hydroponics Monitoring System integrates IoT technology into modern farming to create a closed-loop ecosystem that supports sustainable food production. By combining fish cultivation (aquaponics) and soil-less plant growth (hydroponics), this project enables efficient water usage, automation, and real-time monitoring — ideal for smart agriculture applications.
+
+Abstract:
+In the face of increasing global water and food scarcity, aquaponics and hydroponics offer a sustainable farming model by integrating fish cultivation and plant growth within a closed-loop system. This project proposes an intelligent aquaponics setup using a PVC flask connected to a fish tank via dual pipes for continuous water circulation. Nutrient-rich fish wastewater is supplied to plants, promoting healthy growth while naturally purifying the water for the fish.
+
+A soil moisture sensor and water pump maintain optimal water levels, while a DS18B20 temperature sensor monitors tank temperature. An LDR-based lighting system ensures adequate photosynthesis under low-light conditions, and a DHT11 sensor with fan control regulates ambient temperature. The ESP32 microcontroller coordinates all actions and transmits real-time data to the cloud.
+
+The system demonstrates an eco-friendly farming technique that conserves up to 90% more water than traditional methods while boosting yield by up to 50%. Future enhancements include automated pH monitoring, adaptive LED lighting, and mobile app-based control.
+
+Components Used:
+ESP32 Microcontroller – Controls and connects sensors to cloud
+DS18B20 Temperature Sensor – Monitors water temperature
+DHT11 Sensor – Monitors ambient temperature and humidity
+Soil Moisture Sensor – Maintains proper water levels
+LDR Sensor – Detects light intensity for plant growth
+Water Pump (via Relay) – Circulates nutrient-rich water
+Fan (DC Motor) – Regulates temperature inside setup
+PVC Pipes & Fish Tank – Supports water flow between fish and plants
+LED Grow Lights – Provides photosynthetic light when needed
+
+Working Principle:
+
+Fish Waste Recycling – Fish excreta contains ammonia-rich nutrients. This nutrient-rich water is pumped to the plant bed.
+
+Plant Filtration – Plant roots absorb nutrients, purifying the water naturally. The clean water returns to the fish tank forming a closed loop.
+
+Automation – The ESP32 automates pump, fan, and light control using sensor feedback. Water and temperature thresholds are pre-programmed for efficiency.
+
+IoT Integration – Real-time data (temperature, light, moisture) is sent to the cloud dashboard. Users can remotely monitor and control the setup via the IoT platform.
+
+IoT Features:
+
+Cloud connectivity for real-time monitoring
+
+Dashboard displaying temperature, humidity, and light intensity
+
+Remote control of fan and pump
+
+Alerts for critical environmental changes
+
+Data logging for analysis and optimization
+
+Project Images (to be added later):
+Overall Aquaponics Setup – setup.jpg
+Circuit Connections – circuit.jpg
+Cloud Dashboard – dashboard.jpg
+Sensors and Actuators – sensors.jpg
+
+Data Flow and Control:
+Soil Moisture < threshold → Turn ON Water Pump
+DS18B20 > threshold → Turn ON Fan
+LDR < threshold → Turn ON LED Light
+
+Software and Tools:
+Arduino IDE
+ESP32 Board Manager
+IoT Cloud Platform (Arduino IoT Cloud / Blynk / ThingSpeak)
+C / C++ Programming
+Serial Monitor & Cloud Dashboard
+
+Sustainability Impact:
+
+Reduces water usage by up to 90%
+
+No chemical fertilizers — purely organic system
+
+Enables urban farming and indoor gardening
+
+Encourages eco-friendly automation
+
+Keywords:
+Aquaponics, Hydroponics, Sustainable Farming, IoT, ESP32, Soil Moisture, LDR, Automation, Smart Agriculture
