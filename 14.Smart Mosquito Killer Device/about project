@@ -1,0 +1,146 @@
+Overview
+
+This project aims to design a smart, chemical-free mosquito killer system that uses IoT and automation to attract and eliminate mosquitoes effectively and safely.
+
+The motivation came from seeing how mosquito-borne diseases like malaria, dengue, and chikungunya affect many people, especially in rural and humid areas.
+Most available repellents use harmful chemicals or limited-range traps, so I wanted to build something safer, smarter, and sustainable using embedded electronics.
+
+Concept
+
+The Smart Mosquito Killer Device works by replicating human presence, since mosquitoes are attracted to CO₂, heat, and light.
+It uses a combination of attractants and automation to lure mosquitoes and then eliminate them without using chemicals.
+
+Main Components and Working:
+
+CO₂ Simulation:
+
+An ultrasonic humidifier generates mist at intervals to mimic human breathing and exhaled CO₂.
+
+UV Light:
+
+A UV LED attracts mosquitoes and other nocturnal insects.
+
+Suction Fan:
+
+Creates airflow that pulls mosquitoes toward the killing zone.
+
+Electric Mesh:
+
+A high-voltage grid instantly kills the trapped mosquitoes.
+
+All these parts are controlled by an ESP32 microcontroller, which manages timing, automation, and IoT-based control if needed.
+
+What I Did (My Real Contribution)
+
+Designed and built a working prototype using a modified plastic bottle casing for compactness and portability.
+
+Used ESP32 to control:
+
+The misting cycle of the humidifier (for CO₂ simulation).
+
+The UV LED timing.
+
+The fan and electric mesh switching.
+
+Wrote and uploaded the control code using Arduino IDE.
+
+Tested various time intervals for mist and fan operation to balance mosquito attraction and power saving.
+
+Verified operation in an indoor setup — the system successfully attracted and killed mosquitoes without any chemicals.
+
+Hardware Used
+
+ESP32 Microcontroller
+
+Ultrasonic Humidifier
+
+UV LED Light
+
+Suction Fan (12 V)
+
+Electric Mesh Grid (High Voltage)
+
+Power Supply (5 V + 12 V)
+
+Plastic Bottle Casing
+
+Software & Tools Used
+
+Arduino IDE
+
+C / C++ for control logic
+
+Optional IoT dashboard (Blynk / Arduino IoT Cloud) for monitoring
+
+Features
+
+Chemical-free and safe operation
+
+Low-cost, easy-to-build hardware design
+
+Portable and energy-efficient
+
+Simple automation using ESP32 timers
+
+IoT-ready (can be controlled or monitored remotely)
+
+What I Learned
+
+Interfacing and controlling multiple modules with ESP32
+
+How ultrasonic mist generators can simulate human CO₂ exhalation
+
+Power management between multiple high-load devices (fan + mesh)
+
+Understanding mosquito behavior related to light and heat sources
+
+How to structure a small embedded IoT project from idea to prototype
+
+Challenges Faced
+
+Finding the right misting duration to mimic human breathing
+
+Power balancing between UV, fan, and mesh
+
+Noise reduction from the fan
+
+Ensuring safety while using a high-voltage electric mesh
+
+Making the setup compact yet effective
+
+Future Improvements
+
+Add heat simulation using nichrome wire or IR LEDs to mimic body warmth
+
+Use natural odor-based lures for better attraction
+
+Add solar charging for outdoor use
+
+Design an enclosed, aesthetic casing for long-term use
+
+Add machine learning or sensors in the future to optimize operation based on mosquito activity
+
+Applications
+
+Homes and offices
+
+Hospitals, hostels, and public spaces
+
+Agricultural areas and farmhouses
+
+Outdoor seating areas and parks
+
+My Experience
+
+This was a completely self-built project where I explored how IoT and automation can help in solving real-life health problems.
+Even though it started as a simple idea, I learned a lot about embedded hardware control, timing, and environmental simulation.
+
+It gave me the confidence to combine electronics and practical problem-solving to create something useful for daily life.
+
+Developer
+
+Erukondi Sai Teja
+Department of Electronics and Communication Engineering
+Vardhaman College of Engineering, Hyderabad
+Email: erukondisaiteja@gmail.com
+GitHub: github.com/saiteja2016938
