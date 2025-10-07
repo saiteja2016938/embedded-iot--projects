@@ -1,0 +1,95 @@
+IoT-Based Health Monitoring and Automation System
+ Overview
+
+The IoT-Based Health Monitoring and Automation System integrates Internet of Things (IoT) technology with healthcare and home automation. It continuously monitors patient health and automates appliances like fans and lights based on real-time sensor data and voice commands.
+
+ Abstract
+
+The IoT-Based Health Monitoring and Automation System is an innovative project designed to integrate advanced Internet of Things (IoT) technology into healthcare and home automation, offering real-time monitoring, seamless connectivity, and automated control.
+
+The system uses Arduino Uno and ESP8266 NodeMCU, along with ECG, IR, and DHT11 sensors. Actuators such as relay modules, DC motors, and buzzers ensure effective automation and alert mechanisms. Using Arduino IoT Cloud, users can monitor and control devices remotely.
+
+It tracks heart rate, temperature, and patient presence with real-time LCD display and audible alerts. The system also provides voice-based control using Google Assistant, automating fan and light operation based on environmental conditions.
+
+With scalability and modularity, the design supports future upgrades like SpO₂ monitoring, solar power integration, and mobile app interfaces, bridging healthcare and smart home technologies to improve patient safety and quality of care.
+
+Hardware Components
+
+Component	Description
+Arduino Uno	Core microcontroller for sensor interfacing and local control
+ESP8266 NodeMCU	IoT-enabled Wi-Fi module for cloud connectivity
+ECG Sensor	Measures heart rate and electrical activity
+IR Sensor	Detects patient presence on the bed
+DHT11 Sensor	Measures temperature and humidity
+Relay Module	Controls fan and light
+DC Motor	Represents fan automation
+LCD Display (16x2)	Displays health parameters and device status
+Buzzer	Alerts on abnormal readings
+Power Supply	External 5V/3.7V battery source
+
+Software Tools
+
+Arduino IDE
+
+Arduino IoT Cloud
+
+IFTTT for Google Assistant Integration
+
+ThingSpeak (Optional for visualization)
+
+ Working Principle
+
+Health Monitoring:
+
+ECG sensor measures heart rate.
+
+DHT11 tracks body temperature.
+
+IR sensor detects patient’s presence.
+
+LCD displays all data in real time.
+
+If abnormal values occur, buzzer sounds and data updates to cloud.
+
+Automation System:
+
+Relay module controls fan and light.
+
+Temperature data automates fan operation.
+
+LDR or IR-based control automates lighting.
+
+Google Assistant enables voice commands for manual override.
+
+IoT Cloud Integration:
+
+ESP8266 sends sensor data to Arduino IoT Cloud dashboard.
+
+Dashboard accessible via phone or web browser for caregivers.
+
+
+
+Circuit Connection Overview
+
+ECG → Analog input A0
+
+IR Sensor → Digital pin 7
+
+DHT11 → Digital pin 4
+
+Relay (fan) → Digital pin D2
+
+Relay (light) → Digital pin D3
+
+LCD → I2C interface (SDA/SCL)
+
+ESP8266 ↔ Arduino Uno (TX/RX serial communication)
+
+Key Features
+
+ Real-time ECG and temperature monitoring
+ Remote cloud access and control
+ Automated fan and light operation
+ Voice commands via Google Assistant
+ Audible buzzer alerts for emergencies
+ Modular and scalable design
