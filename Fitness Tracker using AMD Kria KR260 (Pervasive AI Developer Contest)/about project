@@ -1,0 +1,94 @@
+Overview:
+
+This project was my entry for the AMD Pervasive AI Developer Contest.
+The idea was to create a fitness tracking system using the AMD Kria KR260 board — something that could track body movements and show the same on a 3D human model on a phone screen.
+
+Honestly, I couldn’t complete the full prototype, but I learned and explored a lot while setting up everything from scratch. I spent time understanding how the Kria board works, how Linux interacts with it, and how sensors can communicate with it.
+
+What I Tried to Do:
+
+My aim was to connect sensors (like ECG and motion sensors) to the Kria board, collect real-time data, and process it to reflect body activity on a mobile screen as a moving 3D model.
+I wanted to make it smart enough to track workouts, heart rate, and movements — almost like an AI-powered personal trainer.
+
+Though I couldn’t reach that stage, I successfully:
+
+Installed and configured Linux for AMD Kria KR260.
+
+Installed and explored Vivado and Vitis tools for FPGA and AI development.
+
+Learned how to establish SSH communication and serial connections with the board.
+
+Tested communication with I2C sensors and verified readings using terminal commands.
+
+Understood how real-time data can be captured and processed through the Kria board.
+
+What I Actually Did (Hands-On Work):
+
+Set up Ubuntu Linux and configured all AMD tools (Vivado, Vitis).
+
+Connected Kria KR260 via serial port and accessed it remotely using SSH.
+
+Explored I2C and UART communication using basic commands to test sensors.
+
+Tested ECG sensor output and logged data using the board.
+
+Spent a lot of time troubleshooting Linux device access and configuration issues.
+
+Experimented with basic C and Python scripts to test communication with sensors.
+
+Even though I couldn’t make the full “fitness tracker with 3D model” work, I got a complete understanding of the environment, the flow of data between hardware and software, and how to build FPGA-based embedded projects.
+
+Tools & Technologies Used:
+
+Hardware: AMD Kria KR260 Adaptive SOM Board
+
+Software: Linux (Ubuntu), Vivado, Vitis, SSH
+
+Languages: C, Python, Bash
+
+Protocols: UART, I2C, SPI
+
+Sensors: ECG, motion sensor (for basic testing)
+
+What I Learned:
+
+How to install and configure AMD tools on Linux
+
+Basics of FPGA programming and bitstream deployment
+
+Communication between Linux and external sensors using I2C/UART
+
+Debugging Linux device permissions and port issues
+
+How AI models can be accelerated using FPGA hardware
+
+Gained strong understanding of embedded AI development flow
+
+Challenges Faced:
+
+Installation of AMD tools was heavy and required multiple fixes.
+
+Some libraries and board dependencies were difficult to manage.
+
+Interfacing sensors with Kria took time due to port configuration issues.
+
+Lack of direct support documentation for my exact setup slowed progress.
+
+Future Scope:
+
+Complete the data pipeline from sensors to AI model.
+
+Integrate multiple sensors for full-body movement tracking.
+
+Add wireless connectivity to send real-time data to mobile.
+
+Implement a 3D visualization interface for live tracking.
+
+Use the system for health monitoring and smart fitness applications.
+
+My Experience:
+
+This project taught me more than any classroom or tutorial ever could. I learned how real embedded systems work — from installation to debugging hardware communication.
+Even though I couldn’t show a working demo, I gained practical knowledge about how data travels inside FPGA boards, how to connect sensors, and how AI can be used in embedded platforms like Kria.
+
+This experience has made me confident about working on AI-based embedded hardware and FPGA acceleration in the future.
